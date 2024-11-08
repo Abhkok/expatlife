@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expat Life - Your Complete Guide to Living Abroad</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #3498DB;
+            --accent-color: #E74C3C;
+            --light-gray: #ECF0F1;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 40vh;
+           /* background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/api/placeholder/1920/1080') center/cover;*/
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 0rem;
+            margin-top: 40px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 1rem;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Featured Destinations */
+        .destinations {
+            padding: 5rem 1rem;
+            background-color: var(--light-gray);
+        }
+
+        .destinations-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .destination-card {
+            position: relative;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .destination-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .destination-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+
+        .destination-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .destination-info p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Resources Section */
+        .resources {
+            padding: 5rem 1rem;
+            background-color: white;
+        }
+
+        .resources-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .resource-card {
+            padding: 2rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .resource-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .resource-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .resource-card ul {
+            list-style: none;
+        }
+
+        .resource-card ul li {
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .resource-card ul li i {
+            color: var(--secondary-color);
+            margin-right: 0.5rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 5rem 1rem;
+            background-color: var(--light-gray);
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card .name {
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .testimonial-card .location {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 1rem;
+            background-color: white;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-form {
+            padding: 2rem;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 1rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background-color: var(--secondary-color);
+            padding: 4rem 1rem;
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .destination-card {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }    
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid,
+            .destinations-grid,
+            .resources-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            /*FAQ*/
+            .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-header h1 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-answer p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0rem;
+            }
+
+            .faq-header h1 {
+                font-size: 2rem;
+            }
+
+            .faq-question {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
+        }
+        
+        /*image slider*/
+         .slider-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            height: 600px;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .slide-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .slide-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .slide-btn {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slide-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .nav-btn {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .slider-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .indicator.active {
+            background-color: white;
+        }
+
+        @media (max-width: 768px) {
+            .slider-container {
+                height: 400px;
+            }
+
+            .slide-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .slide-content p {
+                font-size: 1rem;
+            }
+
+            .nav-btn {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slider-container {
+                height: 300px;
+            }
+
+            .slide-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .slide-content p {
+                font-size: 0.9rem;
+            }
+
+            .slide-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-globe-americas"></i>
+                <span>Expat Life</span>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#destinations">Destinations</a>
+                <a href="#resources">Resources</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="career counselling.jpg" alt="Slide 1">
+                <div class="slide-content">
+                    <h2>Career Counselling</h2>
+                    <p>Build your career path on a right way</p>
+                    <button class="slide-btn">Enquiry</button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="Study abroad.jpg" alt="Slide 2">
+                <div class="slide-content">
+                    <h2>Study Abroad</h2>
+                    <p>Your Study Abroad Journey Begins Here</p>
+                    <button class="slide-btn">Enquiry</button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="Campus.jpg" alt="Slide 3">
+                <div class="slide-content">
+                    <h2>Campus to Corporate</h2>
+                    <p>Be part of something special</p>
+                    <button class="slide-btn">Enquiry</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-nav">
+            <button class="nav-btn prev">❮</button>
+            <button class="nav-btn next">❯</button>
+        </div>
+
+        <div class="slider-indicators">
+            <div class="indicator active"></div>
+            <div class="indicator"></div>
+            <div class="indicator"></div>
+        </div>
+    </div>
+
+        <!---<div class="hero-content">
+            <h1>Your Journey to a New Life Abroad</h1>
+            <p>Expert guidance, local insights, and a global community to support your expat adventure</p>
+            <a href="#services" class="cta-button">Start Your Journey</a>
+        </div>-->
+   </section> 
+
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>Why Expatlife?</h2>
+            <p>Everything you need to make your transition abroad smooth and successful</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fa-solid fa-user-graduate"></i>
+                <h3>Trusted by 113k+ Students</h3>
+                <p>Last year alone, Expatlife fulfilled dreams of over 113k+ students to study aboard. Your success is our mission!</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-sharp fa-solid fa-bolt"></i>
+                <h3>Counselling right by your side </h3>
+                <p>With 1200+ expert counsellors spread across 77 offices in 63 cities across India, help is always nearby.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-passport"></i>
+                <h3>Highest student visa success rate </h3>
+                <p>With over 55 years of experience, Expatlife boasts the highest student visa success rate, empowering you achieve your dreams</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-mobile"></i>
+                <h3>Courses with instant offer</h3>
+                <p>Through Expatlife exclusive tie-ups, we can help you secure your study offer letter from select universities within minutes</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-heart"></i>
+                <h3>Loved by students</h3>
+                <p>Rated 4.8/5 on Google, 9/10 students recommend Expatlife for our expert services</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-users"></i>
+                <h3>Your global partner in success</h3>
+                <p>As a global leader with offices in 30+ countries, we priorities you and your goals above all else.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="destinations" id="destinations">
+        <div class="section-title">
+            <h2>Popular Expat Destinations</h2>
+            <p>Discover thriving expat communities in these sought-after locations</p>
+        </div>
+        <div class="destinations-grid">
+            <div class="destination-card">
+                <img src="UK.png" alt="Singapore">
+                <div class="destination-info">
+                    <h3>United Kingdom</h3>
+                    <p>Great Britain and Northern Ireland</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="USA.jpg" alt="Dubai">
+                <div class="destination-info">
+                    <h3>USA</h3>
+                    <p>North american vast and diverse country</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="Newzealand.jpg" alt="Berlin">
+                <div class="destination-info">
+                    <h3>New Zealand</h3>
+                    <p>Island country in the southwestern Pacific Ocean.</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="Canada.jpg" alt="Melbourne">
+                <div class="destination-info">
+                    <h3>Canada</h3>
+                    <p>World's second largest country</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="Australia.jpg" alt="Toronto">
+                <div class="destination-info">
+                    <h3>Australia</h3>
+                    <p>Australia's independent creative network</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="Ireland. jpg" alt="Barcelona">
+                <div class="destination-info">
+                    <h3>Ireland</h3>
+                    <p>Natural beauty & Rich culture </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="resources" id="resources">
+        <div class="section-title">
+            <h2>Expat Resources</h2>
+            <p>Essential guides and tools for your journey abroad</p>
+        </div>
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h3>Getting Started</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Pre-departure checklist</li>
+                    <li><i class="fas fa-check"></i> Visa requirements guide</li>
+                    <li><i class="fas fa-check"></i> Cost of living calculator</li>
+                    <li><i class="fas fa-check"></i> Banking setup guide</li>
+                </ul>
+            </div>
+            <div class="resource-card">
+                <h3>Daily Life</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Local transportation guides</li>
+                    <li><i class="fas fa-check"></i> Healthcare systems overview</li>
+                    <li><i class="fas fa-check"></i> Language learning resources</li>
+                    <li><i class="fas fa-check"></i> Cultural adaptation tips</li>
+                </ul>
+            </div>
+            <div class="resource-card">
+                <h3>Professional Life</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Job market insights</li>
+                    <li><i class="fas fa-check"></i> Networking opportunities</li>
+                    <li><i class="fas fa-check"></i> Work permit guidelines</li>
+                    <li><i class="fas fa-check"></i> Business etiquette guide</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2>Expat Stories</h2>
+            <p>Hear from those who've made the journey</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <img src="/api/placeholder/80/80" alt="Sarah">
+                <p>"Expat Life made my transition to Singapore seamless. Their housing support and community networks were invaluable."</p>
+                <div class="name">Sarah Thompson</div>
+                <div class="location">Singapore</div>
+            </div>
+            <div class="testimonial-card">
+                <img src="/api/placeholder/80/80" alt="Marcus">
+                <p>"The career guidance and visa assistance helped me land my dream job in Berlin. Couldn't have done it without them!"</p>
+                <div class="name">Marcus Rodriguez</div>
+                <div class="location">Berlin</div>
+            </div>
+            <div class="testimonial-card">
+                <img src="/api/placeholder/80/80" alt="Emma">
+                <p>"Their education support helped us find the perfect school for our children in Dubai. A true lifesaver!"</p>
+                <div class="name">Emma Chen</div>
+                <div class="location">Dubai</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h3>Stay Updated</h3>
+            <p>Subscribe to our newsletter for the latest expat news, guides, and opportunities</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>Get in Touch</h2>
+            <p>We're here to help you start your expat journey</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <div class="faq-container">
+        <div class="faq-header">
+            <h1>Exaptlife FAQs</h1>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">How do international students choose a US college?</div>
+                <div class="faq-answer">
+                    <p>International students can choose US colleges based on academic programs, location, campus culture, and available support services. We provide guidance and resources to help make this important decision.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How does Expatlife support international students?</div>
+                <div class="faq-answer">
+                    <p>Expatlife offers comprehensive support including visa assistance, academic guidance, cultural integration programs, and ongoing mentorship throughout the student's academic journey.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How does Expatlife help with college applications?</div>
+                <div class="faq-answer">
+                    <p>We provide end-to-end application support, including document preparation, essay guidance, test preparation, and application submission assistance to multiple universities.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How does Expatlife help international students with their career development?</div>
+                <div class="faq-answer">
+                    <p>We offer career counseling, resume workshops, interview preparation, networking opportunities, and connections to potential employers through our extensive professional network.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What other services does Expatlife offer?</div>
+                <div class="faq-answer">
+                    <p>Additional services include housing assistance, airport pickup, orientation programs, English language support, and ongoing academic and personal support throughout the student's stay.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Expat Life</h3>
+                <p>We help expats navigate their journey abroad with comprehensive support and resources for a successful international lifestyle.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#services">Our Services</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@expatlife.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Global Street, International City</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Expat Life. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu after clicking
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        
+        
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+        
+        
+        
+        /*image slider*/
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        const indicators = document.querySelectorAll('.indicator');
+
+        let currentSlide = 0;
+        const slideCount = slides.length;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slideCount;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+            updateSlider();
+        }
+
+        // Add click events
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Add indicator clicks
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                updateSlider();
+            });
+        });
+
+        // Auto-advance slides every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Add touch support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        slider.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                nextSlide();
+            } else if (touchEndX - touchStartX > 50) {
+                prevSlide();
+            }
+        });
+    </script>
+</body>
+</html>
